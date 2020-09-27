@@ -19,11 +19,13 @@ function Transform:new(host, data)
 	self._pos    = Vec2(_x, _y)
 	self._width  = _w
 	self._height = _h
-	self._aabb   = AABB:fromCenter(_x, _y, _w, _h)
 
 	-- scaling
 	self._sx = data.sx or 1
 	self._sy = data.sy or 1
+
+	--
+	self._aabb   = AABB:fromCenter(_x, _y, self:dimensions())
 end
 
 -- Center position
@@ -35,7 +37,8 @@ end
 -- Dimensions
 --
 function Transform:dimensions()
-	return self._width, self._height
+	return self._width  * self._sx,
+	       self._height * self._sy
 end
 
 -- Containing box

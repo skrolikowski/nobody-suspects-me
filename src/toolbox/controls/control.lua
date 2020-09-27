@@ -32,6 +32,12 @@ function Control:new(maps)
 	-- end)
 end
 
+-- Tear down
+--
+function Control:destroy()
+	--
+end
+
 -- Update
 --
 function Control:update(dt)

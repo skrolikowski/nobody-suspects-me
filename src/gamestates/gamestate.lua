@@ -16,18 +16,6 @@ function Gamestate:update(dt)
 	self.controls:update(dt)
 end
 
--- Draw
---
-function Gamestate:draw()
-	--
-end
-
--- Tear down
---
-function Gamestate:destroy()
-	self.controls:destroy()
-end
-
 ---- ---- ---- ----
 
 -- Event: onEnter
@@ -35,20 +23,18 @@ end
 function Gamestate:enter(from, ...)
 	self.from     = from -- previous screen
 	self.settings = ...
-	--
-
 end
 
 -- Event: onResume
 --
 function Gamestate:resume()
-
+	--
 end
 
 -- Event: onLeave
 --
 function Gamestate:leave()
-	--
+	self.controls:destroy()
 end
 
 ---- ---- ---- ----
@@ -62,12 +48,6 @@ end
 -- Event: off request
 --
 function Gamestate:off(name, ...)
-	--
-end
-
--- Event: onBeat
---
-function Gamestate:onBeat(...)
 	--
 end
 
@@ -91,7 +71,7 @@ end
 
 -- Event: quit game
 --
-function Gamestate:onQuit()
+function Gamestate:onExit()
 	love.event.quit()
 end
 

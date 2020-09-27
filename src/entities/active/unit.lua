@@ -11,19 +11,16 @@ function Unit:new(data)
 		name   = data.name or 'unit',
 		mixins = {
 			transform = {
-				x = data.x,
-				y = data.y,
-				w = data.w or 24,
-				h = data.h or 24,
+				x  = data.x,
+				y  = data.y,
+				w  = 16,
+				h  = 16,
+				sx = 0.5,
+				sy = 0.5,
 			},
 			'proximity'
 		},
-		systems = {
-			'act',
-			-- 'animation',
-			'debug',
-			'move',
-		}
+		systems = { 'move' }
 	}))
 
 	--
@@ -38,9 +35,9 @@ function Unit:update(dt)
 
 	--
 	-- state
-	if self.isActing then
-		-- acting
-		self:state(Action[self:act()])
+	if self.isDancing then
+		-- dancing
+		self:state(self:dance())
 	elseif _.__abs(self:vx()) > 1 then
 		-- walking
 		self:state('walk')

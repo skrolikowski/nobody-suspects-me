@@ -2,6 +2,9 @@
 --
 require 'src.toolbox.util'
 
+--
+Saver = require 'src.toolbox.saver'
+
 -- animations
 AnimSheet = require 'src.toolbox.animations.sheet'
 Animation = require 'src.toolbox.animations.animation'
@@ -12,8 +15,8 @@ require 'src.toolbox.animations.config'
 --
 Control   = require 'src.toolbox.controls.control'
 
--- metronome
-Metronome = require 'src.toolbox.metronome.metronome'
+--
+Disco = require 'src.toolbox.disco.disco'
 
 UI      = require 'src.toolbox.ui.ui'
 UIItems = Util:buildDir('src/toolbox/ui/mods')

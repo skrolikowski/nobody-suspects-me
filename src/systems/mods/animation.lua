@@ -11,7 +11,8 @@ function Animation:new(host, data)
 
 	--
 	-- properties
-	self.sprite = Sprite[host.name]
+	self.sprite = data.sprite
+	self.color  = data.color or Config.color.white
 
 	-- set up post-callback
 	self.sprite:each(function(anim, name)
@@ -19,12 +20,21 @@ function Animation:new(host, data)
 			host:dispatch('onAnimationComplete', name)
 		end)
 	end)
+
+	--
+	self.sprite:set('idle')
 end
 
 -- Event: onStateChange
 --
 function Animation:onStateChange(state)
 	self.sprite:set(state)
+end
+
+-- Event: onStateColor
+--
+function Animation:onStateColor(color)
+	self.color = color
 end
 
 -- Update
@@ -36,14 +46,9 @@ end
 -- Draw
 --
 function Animation:draw()
-	lg.push()
-	lg.scale(
-		self.host:sx() * self.host:facing(),
-		self.host:sy())
-	--
+	lg.setColor(self.color)
+
 	self.sprite:draw()
-	--
-	lg.pop()
 end
 
 return Animation

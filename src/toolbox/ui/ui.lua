@@ -7,14 +7,7 @@ local UI     = Modern:extend()
 -- New
 --
 function UI:new(items)
-	self.items = {}
-
-	--
-	for name, data in pairs(items) do
-		if UIItems[name] then
-			table.insert(self.items, UIItems[name](data))
-		end
-	end
+	self.items = items
 end
 
 -- Teardown

@@ -8,6 +8,7 @@ local Bounds = Base:extend()
 --
 function Bounds:new(data)
 	Base.new(self, _:merge({
+		name   = 'bounds',
 		mixins = {
 			transform = {
 				x = data.x,

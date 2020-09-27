@@ -13,6 +13,7 @@ local Sheet  = Modern:extend()
 --
 function Sheet:new(path)
     self.image = path and lg.newImage(path) or nil
+    self.color = nil  -- set static color
     self.quads = {}
 end
 
@@ -21,6 +22,14 @@ end
 --
 function Sheet:load(path)
     self.image = lg.newImage(path)
+    return self
+end
+
+-- Set draw color
+-- [Chain]
+--
+function Sheet:setColor(color)
+    self.color = color
     return self
 end
 

@@ -16,19 +16,17 @@ end
 
 ---- ---- ---- ----
 
--- Event: onBlend
+-- Increase blend value
 --
-function Blend:onBlend(qty)
-	self._blend = _.__min(1, self._blend + qty)
+function Blend:blendUp(qty)
+	self._blend = _.__min(1, self._blend + (qty or 0.1))
 end
 
--- Event: offBlend
+-- Decrease blend value
 --
-function Blend:offBlend(qty)
-	self._blend = _.__max(0, self._blend + qty)
+function Blend:blendDown(qty)
+	self._blend = _.__max(0, self._blend - (qty or 0.1))
 end
-
----- ---- ---- ----
 
 -- Get/set action
 --

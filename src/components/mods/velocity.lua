@@ -11,7 +11,7 @@ function Velocity:new(host, data)
 	self.host = host
 
 	-- properties
-	self._spd    = data.spd or 150
+	self._spd    = data.spd or 75
 	self._spdMax = self._spd * 2
 	self._vel    = Vec2()
 	self._force  = Vec2()

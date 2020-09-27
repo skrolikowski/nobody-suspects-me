@@ -4,7 +4,7 @@
 
 -- Returns next frame index
 --
-local __nextFrame= function(obj)
+local __nextFrame = function(obj)
 	if obj.isReverse then
 		return _.__max((obj.index - 1), 1)
 	else
@@ -64,10 +64,17 @@ local Animation = Modern:extend()
 
 -- New
 --
-function Animation:new(sheet)
-	self.sheet = sheet
-	self.delta = 1 / 10
-	self.quads = {}
+function Animation:new(sheets)
+	--
+	-- properties
+	self.sheets = {}
+	self.delta  = 1 / 10
+	self.quads  = {}
+
+	-- sheets
+	for __, sheet in pairs(sheets) do
+		table.insert(self.sheets, sheet)
+	end
 
 	-- flags
 	self.isReverse = false
@@ -106,15 +113,26 @@ end
 --
 function Animation:draw()
 	local x, y, w, h = self:container()
+	local quad       = self.quads[self.index]
+	local ox, oy
 
-	lg.setColor(Config.color.white)
-	lg.draw(
-		self.sheet.image,        -- spritesheet
-		self.quads[self.index],  -- quad
-		0, 0, 0, 1, 1,
-		(self.ox or 0) + w * 0.5,
-		(self.oy or 0) + h * 0.5
-	)
+	for __, sheet in pairs(self.sheets) do
+		ox = (self.ox or 0) + w * 0.5
+		oy = (self.oy or 0) + h * 0.5
+
+		if sheet.color then
+		-- use static color
+			lg.push('all')
+			--
+			lg.setColor(sheet.color)
+			lg.draw(sheet.image, quad, 0, 0, 0, 1, 1, ox, oy)
+			--
+			lg.pop()
+		else
+		-- use inherit color
+			lg.draw(sheet.image, quad, 0, 0, 0, 1, 1, ox, oy)
+		end
+	end
 end
 
 ---- ---- ---- ----
@@ -150,7 +168,7 @@ function Animation:frames(...)
 
 		for r = row, rows do
 			for c = col, cols do
-				table.insert(self.quads, self.sheet:query(r, c))
+				table.insert(self.quads, self.sheets[1]:query(r, c))
 			end
 		end
 	end

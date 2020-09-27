@@ -3,17 +3,17 @@
 --
 require 'src.config'
 require 'src.control'
-require 'src.rooms'
 
 -- pixels please..
 lg.setDefaultFilter('nearest', 'nearest')
-lg.setBackgroundColor(Config['color']['p1'])
+lg.setBackgroundColor(Config.color.bg)
 
 -- load gamepad mappings
 -- lj.loadGamepadMappings('vendor/gamecontrollerdb.txt')
 
 -- vendor packages
 pprint    = require 'vendor.pprint.pprint'
+Binser    = require 'vendor.binser.binser'
 Camera    = require 'vendor.hump.camera'
 Gamestate = require 'vendor.hump.gamestate'
 Timer     = require 'vendor.hump.timer'
@@ -30,8 +30,11 @@ require 'src.world'
 -- load
 --
 function love.load()
+	loadGame()
+    --
+
     Gamestate.registerEvents()
-    Gamestate.switch(Gamestates['scene'], { room = 'AA' })
+    Gamestate.switch(Gamestates['title'])
 end
 
 -- Update
@@ -109,4 +112,110 @@ function love.gamepadreleased(joystick, button)
 	else
 		Gamestate.current():onReleased(_.__lower('btn_'..button))
 	end
+end
+
+---- ---- ---- ----
+
+-- Load Game
+--
+function loadGame()
+	if Saver:exists('nobody-suspects-me') then
+		_GAME = Saver:load('nobody-suspects-me')
+    end
+    --
+    resetGame()
+end
+
+-- Reset Game
+--
+function resetGame()
+	_GAME = Saver:save('nobody-suspects-me', {
+		level      = 1,
+		score      = 0,
+		volume     = 1,
+		difficulty = 3,
+		highScore  = _GAME.highScore or 0,
+	})
+end
+
+-- Save Game
+--
+function saveGame(data)
+	_GAME = Saver:save('nobody-suspects-me', _:merge(_GAME, data))
+end
+
+---- ---- ---- ----
+
+-- Event: onVolumeUp
+--
+function onVolumeUp()
+	saveGame({ volume = _.__min(1, _GAME.volume + 0.2) })
+	--
+	for __, audio in pairs(Config.audio) do
+		audio:setVolume(_GAME.volume)
+	end
+	--
+	Config.audio.toggle:play()
+	Config.color.volume.up = {1,1,1,1}
+end
+
+-- Event: onVolumeDown
+--
+function onVolumeDown()
+	if _GAME.volume - 0.2 > 0 then
+		saveGame({ volume = _GAME.volume - 0.2 })
+	else
+		saveGame({ volume = 0 })
+	end
+	--
+	for __, audio in pairs(Config.audio) do
+		audio:setVolume(_GAME.volume)
+	end
+	--
+	Config.audio.toggle:play()
+	Config.color.volume.down = {1,1,1,1}
+end
+
+-- Event: offVolumeUp
+--
+function offVolumeUp()
+	Config.color.volume.up = {1,1,1,0.5}
+end
+
+-- Event: offVolumeDown
+--
+function offVolumeDown()
+	Config.color.volume.down = {1,1,1,0.5}
+end
+
+---- ---- ---- ----
+
+-- Event: onDifficultyUp
+--
+function onDifficultyUp()
+	saveGame({ difficulty = _.__min(#Config.difficulty, _GAME.difficulty + 1) })
+	--
+	Config.audio.toggle:play()
+	Config.color.difficulty.up = {1,1,1,1}
+end
+
+-- Event: onDifficultyDown
+--
+function onDifficultyDown()
+	saveGame({ difficulty = _.__max(1, _GAME.difficulty - 1) })
+	--
+	Config.audio.toggle:play()
+	Config.color.difficulty.down = {1,1,1,1}
+end
+
+-- Event: offDifficultyUp
+--
+function offDifficultyUp()
+	Config.color.difficulty.up = {1,1,1,0.5}
+end
+
+-- Event: offDifficultyDown
+--
+function offDifficultyDown()
+	Config.color.difficulty.down = {1,1,1,0.5}
 end

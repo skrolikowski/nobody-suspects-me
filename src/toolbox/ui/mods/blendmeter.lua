@@ -7,7 +7,7 @@ local UIBlendMeter = Base:extend()
 --
 function UIBlendMeter:new(data)
 	Base.new(self, _:merge(data, {
-		image = lg.newImage('res/ui/BlendMeter.png')
+		image = lg.newImage('res/ui/Blend.png')
 	}))
 
 	--
@@ -15,18 +15,12 @@ function UIBlendMeter:new(data)
 	self.foreground = lg.newImage('res/ui/BlendBar.png')
 end
 
--- Update
---
-function UIBlendMeter:update(dt)
-	--
-end
-
 -- Draw
 --
 function UIBlendMeter:draw()
 	lg.push('all')
 	lg.translate(self:position())
-	lg.scale(2.5, 2.5)
+	lg.scale(3 ,3)
 	--
 	local w, h = self:dimensions()
 
@@ -36,24 +30,25 @@ function UIBlendMeter:draw()
 
 	-- gradient
 	if not self.gradient then
-		self.gradient = Util:gradient('horizontal', {_:color('red-500')}, {_:color('blue-500')})
+		self.gradient = Util:gradient('vertical', Config.color.pink[1], Config.color.pink[10])
 	end
 
 	-- meter
-	local mWidth  = w * 0.3
-	local mHeight = h * 0.6
-	local mLeft   = w * 0.5 - mWidth  * 0.5
+	local mWidth  = w * 0.4
+	local mHeight = h * 0.5
+	local mLeft   = w * 0.16
 	local mTop    = h * 0.5 - mHeight * 0.5
-	local mSx     = mWidth / self.gradient:getWidth()
-	local mSy     = mHeight * self.host:blend() /self.gradient:getHeight()
+	local mSx     = mWidth * self.host:blend() / self.gradient:getWidth()
+	local mSy     = mHeight /self.gradient:getHeight()
 
-	-- border
+	-- gradient
 	lg.setColor(Config.color.white)
 	lg.draw(self.gradient, mLeft, mTop, 0, mSx, mSy)
 	
 	-- foreground
 	lg.setColor(Config.color.white)
-	lg.draw(self.foreground, 16)
+	lg.draw(self.foreground)
+
 	--
 	lg.pop()
 end

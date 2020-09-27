@@ -63,7 +63,7 @@ end
 --
 function Entity:draw()
 	if self.sm then
-		lg.push()
+		lg.push('all')
 		lg.translate(self:center())
 		lg.scale(self._sx, self._sy)
 		--

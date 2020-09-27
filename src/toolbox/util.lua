@@ -39,6 +39,34 @@ function Util:mod(value, max)
     return _.__max(1, value % max)
 end
 
+--
+--
+function Util:flashColor(tbl, c1, c2)
+    Timer.script(function(wait)
+         while true do
+             Timer.tween(1, tbl, c1, 'linear')
+             wait(1)
+             --
+             Timer.tween(1, tbl, c2, 'linear')
+             wait(1)
+         end
+    end)
+end
+
+--
+--
+function Util:drawTriangle(tx, ty, r, sx, sy, color)
+    lg.push()
+    lg.translate(tx, ty)
+    lg.rotate(r or 0)
+    lg.scale(sx or 1, sy or 1)
+    --
+        lg.setColor(color or Config.color.white)
+        lg.polygon('fill', {-1, -1, 1, -1, 0, 1})
+    --
+    lg.pop()
+end
+
 function new(name, ...)
     local path = LUA_PATH and LUA_PATH or os.getenv "LUA_PATH" or "./?.lua"
     local name = _.__gsub(name, "%p+", "/")

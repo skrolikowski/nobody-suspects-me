@@ -20,6 +20,8 @@ function World:destroy()
 	--
 end
 
+-- Spawn layers from map
+--
 function World:addLayer(layer)
 	for __, object in pairs(layer.objects) do
 		local name    = _.__lower(object.name ~= '' and object.name or layer.name)

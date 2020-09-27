@@ -1,11 +1,43 @@
---
---
 _Control = {
-	scene = {
+
+	------------------
+	-- Title Screens
+	--
+	title = {
 		--
-		-- Escape
-		ESC = function() Gamestate.current():onQuit() end,
-	
+		-- Menu
+		SPACE = function() Gamestate.current():onPlay() end,
+		ESC   = function() Gamestate.current():onExit() end,
+
+		-- Volume
+		U = {
+			on  = function() onVolumeUp()  end,
+			off = function() offVolumeUp() end,
+		},
+		D = {
+			on  = function() onVolumeDown()  end,
+			off = function() offVolumeDown() end,
+		},
+
+		-- Difficulty
+		L = {
+			on  = function() onDifficultyDown()  end,
+			off = function() offDifficultyDown() end,
+		},
+		R = {
+			on  = function() onDifficultyUp()  end,
+			off = function() offDifficultyUp() end,
+		}
+	},
+
+	------------------
+	-- Room Screen
+	--
+	room = {
+		--
+		-- Pause
+		ESC = function() Gamestate.current():onPause() end,
+
 		-- Movement
 		U = {
 			on  = function() Gamestate.current():onRq('axis', { y = -1 }) end,
@@ -23,11 +55,39 @@ _Control = {
 			on  = function() Gamestate.current():onRq('axis', { x =  1 }) end,
 			off = function() Gamestate.current():onRq('axis', { x =  0 }) end,
 		},
+	},
 
-		-- Actions
-		L1 = { on = function() Gamestate.current():onRq('act', 'A') end },
-		L2 = { on = function() Gamestate.current():onRq('act', 'B') end },
-		R1 = { on = function() Gamestate.current():onRq('act', 'C') end },
-		R2 = { on = function() Gamestate.current():onRq('act', 'D') end },
+	------------------
+	-- Overlay Screens
+	--
+	overlay = {
+		SPACE = function() Gamestate.current():onEsc() end,
+		ESC   = function() Gamestate.current():onEsc()     end,
+	},
+
+	------------------
+	-- Pause Screens
+	--
+	pause = {
+		SPACE = function() Gamestate.current():onRestart() end,
+		ESC   = function() Gamestate.current():onEsc()     end,
+
+		-- Volume
+		U = {
+			on  = function() onVolumeUp()  end,
+			off = function() offVolumeUp() end,
+		},
+		D = {
+			on  = function() onVolumeDown()  end,
+			off = function() offVolumeDown() end,
+		}
+	},
+
+	------------------
+	-- Menu Screen
+	--
+	menu = {
+		SPACE = function() Gamestate.current():onContinue() end,
+		ESC   = function() Gamestate.current():onExit()     end,
 	}
 }
