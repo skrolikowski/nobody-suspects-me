@@ -84,6 +84,14 @@ _Control = {
 	},
 
 	------------------
+	-- Suspected Screen
+	--
+	suspected = {
+		SPACE = function() Gamestate.current():onRetry()    end,
+		ESC   = function() Gamestate.current():onMainMenu() end,
+	},
+
+	------------------
 	-- Menu Screen
 	--
 	menu = {

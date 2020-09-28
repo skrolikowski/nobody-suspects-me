@@ -31,6 +31,7 @@ function Bottle:new(data)
 	--
 	-- flags
 	self.points = 10
+	self.pickup = 0.05
 	self.isCollectable = true
 end
 

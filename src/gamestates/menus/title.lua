@@ -58,8 +58,8 @@ function Title:draw()
 	--
 
 	-- difficulty
-	Util:drawTriangle(w*0.97, h*0.10,  _.__pi/2, 8, 8, Config.color.difficulty.up)
-	Util:drawTriangle(w*0.97, h*0.12, -_.__pi/2, 8, 8, Config.color.difficulty.down)
+	Util:drawTriangle(w*0.97, h*0.10, -_.__pi/2, 8, 8, Config.color.difficulty.up)
+	Util:drawTriangle(w*0.97, h*0.12,  _.__pi/2, 8, 8, Config.color.difficulty.down)
 	--
 	lg.setColor(Config.color.white)
 	lg.setFont(Config.ui.font.xs)

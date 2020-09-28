@@ -11,5 +11,12 @@ Gamestates = {
 	-- rooms
 	rooms = {
 		'src.gamestates.rooms.01',
+		'src.gamestates.rooms.02',
+		'src.gamestates.rooms.03',
+		'src.gamestates.rooms.04',
+		'src.gamestates.rooms.05',
+		'src.gamestates.rooms.06',
+		'src.gamestates.rooms.07',
+		'src.gamestates.rooms.08',
 	}
 }

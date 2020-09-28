@@ -27,11 +27,11 @@ Config = {
 	-- Difficulty Parameters
 	--
 	difficulty = {
-		{ dropRate = 3.0, dropQty = 0.05, scoreMod = 0.98 },
-		{ dropRate = 2.5, dropQty = 0.05, scoreMod = 0.96 },
-		{ dropRate = 2.0, dropQty = 0.1,  scoreMod = 0.94 },
-		{ dropRate = 1.5, dropQty = 0.1,  scoreMod = 0.92 },
-		{ dropRate = 1.0, dropQty = 0.1,  scoreMod = 0.90 },
+		{ dropRate = 2.0, dropQty = 0.05, scoreMod = 0.98 },
+		{ dropRate = 1.5, dropQty = 0.05, scoreMod = 0.96 },
+		{ dropRate = 1.5, dropQty = 0.06, scoreMod = 0.94 },
+		{ dropRate = 1.0, dropQty = 0.07, scoreMod = 0.92 },
+		{ dropRate = 1.0, dropQty = 0.08, scoreMod = 0.90 },
 	},
 
 	--------------------

@@ -8,8 +8,8 @@ local Menu = Base:extend()
 --
 function Menu:init(data)
 	Base.init(self, {
-		name     = data.name or 'menu',
-		controls = _Control['menu'] 
+		name     = data.name     or 'menu',
+		controls = data.controls or _Control['menu'] 
 	})
 end
 
@@ -84,13 +84,17 @@ function Menu:calcScore(data)
 	self.timeScore = Config.score.time.base * self.timeScore
 	self.timeScore = _.__floor(self.timeScore)
 
+	-- save previous
+	self.prevScore     = self.score - self.itemScore
+	self.prevHighScore = _GAME.highScore
+
 	-- update score
 	self.score = self.score + self.blendScore + self.timeScore
 	self.score = _.__floor(self.score)
 
 	-- new high score?
 	if self.score > _GAME.highScore then
-		_GAME.highScore = self.score
+		saveGame({ highScore = self.score })
 	end
 end
 

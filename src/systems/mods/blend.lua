@@ -38,7 +38,7 @@ end
 --
 function Blend:onContact(con, other)
 	if other.name == 'bottle' then
-		self.host:blendUp(0.05)
+		self.host:blendUp(other.pickup)
 		--
 		other:destroy()
 	end

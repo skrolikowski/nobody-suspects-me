@@ -12,18 +12,10 @@ function Room:init()
 	self.path  = 'res/maps/01.lua'
 	self.par   = 5
 	self.audio = {
-		path    = 'res/audio/music/Sad Town.ogg',
-		bpm     = 105,
-		pattern = { 'A','-','C','-','B','-', 'D', '-' }
+		path    = 'res/audio/music/Farm Frolics.ogg',
+		bpm     = 160,
+		pattern = { 'A','-','B','-','A','-', 'C', '-', 'A','-', 'D', '-' }
 	}
-end
-
-function Room:enter(from, ...)
-	Base.enter(self, from, ...)
-    
-    --
-    -- play intro
-    Gamestate.push(Gamestates['intro'])
 end
 
 return Room

@@ -3856,19 +3856,6 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
-        },
-        {
-          id = 820,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 640,
-          y = 400,
-          width = 32,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
         }
       }
     },
@@ -3883,19 +3870,6 @@ return {
       offsety = 0,
       properties = {},
       objects = {
-        {
-          id = 1,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 128,
-          y = 704,
-          width = 16,
-          height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
         {
           id = 819,
           name = "",

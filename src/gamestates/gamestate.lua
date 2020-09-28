@@ -2,9 +2,9 @@
 --
 
 local Modern    = require 'modern'
-local Gamestate = Modern:extend()
+local BaseState = Modern:extend()
 
-function Gamestate:init(data)
+function BaseState:init(data)
 	self.id       = data.id   or Util:uuid()
 	self.name     = data.name or 'scene'
 	self.controls = Control(data.controls or {})
@@ -12,7 +12,7 @@ end
 
 -- Update
 --
-function Gamestate:update(dt)
+function BaseState:update(dt)
 	self.controls:update(dt)
 end
 
@@ -20,20 +20,20 @@ end
 
 -- Event: onEnter
 --
-function Gamestate:enter(from, ...)
+function BaseState:enter(from, ...)
 	self.from     = from -- previous screen
 	self.settings = ...
 end
 
 -- Event: onResume
 --
-function Gamestate:resume()
+function BaseState:resume()
 	--
 end
 
 -- Event: onLeave
 --
-function Gamestate:leave()
+function BaseState:leave()
 	self.controls:destroy()
 end
 
@@ -41,38 +41,45 @@ end
 
 -- Event: on request
 --
-function Gamestate:on(name, ...)
+function BaseState:on(name, ...)
 	--
 end
 
 -- Event: off request
 --
-function Gamestate:off(name, ...)
+function BaseState:off(name, ...)
 	--
 end
 
 -- Event: onPressed
 --
-function Gamestate:onPressed(...)
+function BaseState:onPressed(...)
 	self.controls:onPressed(...)
 end
 
 -- Event: onReleased
 --
-function Gamestate:onReleased(...)
+function BaseState:onReleased(...)
 	self.controls:onReleased(...)
 end
 
 -- Event: onControl (callbacks)
 --
-function Gamestate:onControl(name, ...)
+function BaseState:onControl(name, ...)
 	pcall(self.controls[name], ...)
 end
 
--- Event: quit game
+
+-- Event: Go to Main Menu
 --
-function Gamestate:onExit()
+function BaseState:onMainMenu()
+	Gamestate.switch(Gamestates['title'])
+end
+
+-- Event: Quit Game
+--
+function BaseState:onExit()
 	love.event.quit()
 end
 
-return Gamestate
+return BaseState

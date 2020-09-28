@@ -7,7 +7,10 @@ local Suspected = Base:extend()
 -- Init
 --
 function Suspected:init()
-	Base.init(self, { name = 'suspected' })
+	Base.init(self, {
+		name     = 'suspected',
+		controls = _Control['suspected'] 
+	})
 end
 
 -- Enter Screen
@@ -37,16 +40,15 @@ function Suspected:enter(from, ...)
 	end)
 end
 
--- Calculate Score
+-- Event: onRetry
 --
-function Suspected:calcScore(data)
-	Base.calcScore(self, data)
+function Suspected:onRetry(data)
 	--
-	saveGame({
-		level     = 1,
-		score     = 0,
-		highScore = _GAME.highScore
-	})
+	-- revert
+	saveGame({ score = self.prevScore })
+
+	-- retry
+	self:onContinue()
 end
 
 -- Draw
@@ -78,7 +80,8 @@ function Suspected:draw()
 	-- continue
 	lg.setColor(self.c3)
 	lg.setFont(Config.ui.font.md)
-	lg.printf('Press SPACE to Try Again', 0, h*0.75, w, 'center')
+	lg.printf('[ESC] - Main Menu',   w*0.25, h*0.75, w*0.5, 'left')
+	lg.printf('[SPACE] - Try Again', w*0.25, h*0.75, w*0.5, 'right')
 end
 
 return Suspected

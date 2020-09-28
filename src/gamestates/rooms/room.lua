@@ -53,6 +53,10 @@ end
 function Room:enter(from, ...)
 	Base.enter(self, from, ...)
 	--
+    -- play intro
+    Gamestate.push(Gamestates['intro'])
+    
+	--
 	-- bootstrap
 	self:loadRoom()
 

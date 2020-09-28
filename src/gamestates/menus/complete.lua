@@ -45,11 +45,12 @@ end
 --
 function Complete:calcScore(data)
 	Base.calcScore(self, data)
+	
 	--
+	-- update progress
 	saveGame({
-		level     = _GAME.level + 1,
-		score     = self.score,
-		highScore = _GAME.highScore
+		level = _GAME.level + 1,
+		score = self.score,
 	})
 end
 
