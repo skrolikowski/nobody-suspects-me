@@ -41,8 +41,7 @@ function Menu:onContinue()
 	else
 		-- load next room
 		if _GAME.level < #Gamestates.rooms+1 then
-			Gamestate.switch(
-				new(Gamestates.rooms[_GAME.level]))
+			Gamestate.switch(Gamestates.rooms[_GAME.level])
 		else
 			Gamestate.switch(Gamestates['gameover'])
 		end

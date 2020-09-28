@@ -100,8 +100,7 @@ function Title:onPlay()
 
 	loadGame()
 	--
-	Gamestate.switch(
-		new(Gamestates.rooms[_GAME.level]))
+	Gamestate.switch(Gamestates.rooms[_GAME.level])
 end
 
 return Title

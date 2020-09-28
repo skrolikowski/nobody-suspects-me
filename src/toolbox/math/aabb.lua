@@ -106,9 +106,9 @@ function AABB:contains(...)
 
     if #args == 2 then
         return containsPoint(self, Vec2(args[1], args[2]))
-    elseif args[1].__name == 'Vec2' then
+    elseif _.__lower(args[1].__name) == 'vec2' then
         return containsPoint(self, args[1])
-    elseif args[1].__name == 'AABB' then
+    elseif _.__lower(args[1].__name) == 'aabb' then
         return containsAABB(self, args[1])
     end
 
@@ -181,7 +181,7 @@ end
 -- generate new AABB translated
 -- 
 function AABB:translate(tx, ty)
-    if not _:isNumber(tx) and tx.__name == 'Vec2' then
+    if not _:isNumber(tx) and _.__lower(tx.__name) == 'vec2' then
         tx, ty = tx:unpack()
     end
 

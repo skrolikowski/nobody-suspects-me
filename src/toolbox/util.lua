@@ -67,20 +67,20 @@ function Util:drawTriangle(tx, ty, r, sx, sy, color)
     lg.pop()
 end
 
-function new(name, ...)
-    local path = LUA_PATH and LUA_PATH or os.getenv "LUA_PATH" or "./?.lua"
-    local name = _.__gsub(name, "%p+", "/")
+-- function new(name, ...)
+--     local path = LUA_PATH and LUA_PATH or os.getenv "LUA_PATH" or "./?.lua"
+--     -- local name = _.__gsub(name, "%p+", "/")
 
-    for path in string.gfind(path, '[^;]+') do
-        path = _.__gsub(path, '?', name)
+--     for path in string.gfind(path, '[^;]+') do
+--         path = _.__gsub(path, '?', name)
 
-        if loadfile(path) then
-            return dofile(path)(...)
-        end
-    end
+--         if loadfile(path) then
+--             return dofile(path)(...)
+--         end
+--     end
     
-    error('No such module exists: ' .. name)
-end
+--     error('No such module exists: ' .. name)
+-- end
 
 function Util:buildDir(path, tbl)
     local files = lf.getDirectoryItems(path)

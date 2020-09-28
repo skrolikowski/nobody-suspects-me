@@ -10,13 +10,13 @@ Gamestates = {
 
 	-- rooms
 	rooms = {
-		'src.gamestates.rooms.01',
-		'src.gamestates.rooms.02',
-		'src.gamestates.rooms.03',
-		'src.gamestates.rooms.04',
-		'src.gamestates.rooms.05',
-		'src.gamestates.rooms.06',
-		'src.gamestates.rooms.07',
-		'src.gamestates.rooms.08',
+		[1] = require 'src.gamestates.rooms.01',
+		[2] = require 'src.gamestates.rooms.02',
+		[3] = require 'src.gamestates.rooms.03',
+		[4] = require 'src.gamestates.rooms.04',
+		[5] = require 'src.gamestates.rooms.05',
+		[6] = require 'src.gamestates.rooms.06',
+		[7] = require 'src.gamestates.rooms.07',
+		[8] = require 'src.gamestates.rooms.08',
 	}
 }

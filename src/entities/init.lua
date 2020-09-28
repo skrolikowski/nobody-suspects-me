@@ -1,10 +1,10 @@
 --
 --
 Entities = {
-	pink   = 'src.entities.active.pink',
-	blue   = 'src.entities.active.blue',
+	pink   = lf.load('src/entities/active/pink.lua'),
+	blue   = lf.load('src/entities/active/blue.lua'),
 	--
-	bounds = 'src.entities.passive.bounds',
-	bottle = 'src.entities.passive.bottle',
-	exit   = 'src.entities.passive.exit',
+	bounds = lf.load('src/entities/passive/bounds.lua'),
+	bottle = lf.load('src/entities/passive/bottle.lua'),
+	exit   = lf.load('src/entities/passive/exit.lua'),
 }

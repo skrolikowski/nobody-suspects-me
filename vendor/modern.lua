@@ -28,13 +28,6 @@
     @param   Module(key)  - mixin to add
     @return  void
 ]]--
-local __addMixin = function(obj, mixin)
-    assert(mixin.__name ~= nil, "Please make sure your table has a `__name` property (e.g. `{ __name = 'Example' }`)")
-
-    table.insert(obj.__mixins, mixin)
-    mixin.__module = obj
-end
-
 local __removeMixin = function(obj, mixin)
     assert(mixin.__name ~= nil, "Please make sure your table has a `__name` property (e.g. `{ __name = 'Example' }`)")
 
@@ -45,6 +38,13 @@ local __removeMixin = function(obj, mixin)
     end
 end
 
+local __addMixin = function(obj, mixin)
+    assert(mixin.__name ~= nil, "Please make sure your table has a `__name` property (e.g. `{ __name = 'Example' }`)")
+
+    table.insert(obj.__mixins, mixin)
+    mixin.__module = obj
+end
+
 --[[
     Returns resolved names of code in line
         calling originating function.
@@ -52,30 +52,30 @@ end
     @internal
     @return string(name, caller, func)
 ]]--
--- local __resolveName = function()
---     local info     = debug.getinfo(3, "Sl")
---     local source   = string.gsub(info.source, "@", "")
-
---     return source:match("^.*/(.*).lua")
--- end
 local __resolveName = function()
-    local pattern  = "([%w_]+)%s*=%s*([%w_]+)[:|.]?([%w]*)%((.*)%)"
     local info     = debug.getinfo(3, "Sl")
     local source   = string.gsub(info.source, "@", "")
-    local lineNum  = 0
-    local lineData = ""
 
-    for line in io.lines(source) do
-        lineNum  = lineNum + 1
-        lineData = line
-
-        if lineNum == info.currentline then
-            break
-        end
-    end
-
-    return string.match(lineData, pattern)
+    return source:match("^.*/(.*).lua")
 end
+-- local __resolveName = function()
+--     local pattern  = "([%w_]+)%s*=%s*([%w_]+)[:|.]?([%w]*)%((.*)%)"
+--     local info     = debug.getinfo(3, "Sl")
+--     local source   = string.gsub(info.source, "@", "")
+--     local lineNum  = 0
+--     local lineData = ""
+
+--     for line in io.lines(source) do
+--         lineNum  = lineNum + 1
+--         lineData = line
+
+--         if lineNum == info.currentline then
+--             break
+--         end
+--     end
+
+--     return string.match(lineData, pattern)
+-- end
 
 --[[
     Intercept function index requests.

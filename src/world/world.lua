@@ -25,7 +25,6 @@ end
 function World:addLayer(layer)
 	for __, object in pairs(layer.objects) do
 		local name    = _.__lower(object.name ~= '' and object.name or layer.name)
-		local path    = Entities[name]
 		local options = {
 			name  = name,
 			world = self,
@@ -36,7 +35,7 @@ function World:addLayer(layer)
 			props = object.properties,
 		}
 
-		new(path, options)
+		Entities[name]()(options)
 	end
 end
 
@@ -159,11 +158,6 @@ function World:queryContacts(item, dx, dy, cb)
 			end
 		end
 	end)
-
-	-- -- sort by order
-	-- table.sort(contacts, function(a, b)
-	-- 	return a.order < b.order
-	-- end)
 
 	-- make callbacks (in order)
 	if cb then

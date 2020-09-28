@@ -1,6 +1,7 @@
 -- Nobody Suspects Me
 -- https://github.com/skrolikowski/nobody-suspects-me
 --
+
 require 'src.config'
 require 'src.control'
 
