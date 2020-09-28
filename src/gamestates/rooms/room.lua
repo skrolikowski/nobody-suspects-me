@@ -80,7 +80,7 @@ function Room:enter(from, ...)
 
 	-- ui
 	self.ui = UI({
-		UIItems['blendmeter']({ host = self.player, x = Config.width - 112*3-16, y = 16 }),
+		UIItems['blendmeter']({ host = self.player, x = Config.width - 144*3-16, y = 16 }),
 		UIItems['score']({ host = self.player, x = Config.width - 64*2.5, y = 16, w = 64*2, h = 16*2 })
 	})
 

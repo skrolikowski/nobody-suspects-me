@@ -40,13 +40,13 @@ function Pause:draw()
 	lg.printf('[SPACE] - Restart', w*0.05, h*0.05, w*0.5, 'left')
 
 	-- volume
-	Util:drawTriangle(w*0.81, h*0.050, _.__pi, 8, 8, Config.color.volume.up)
-	Util:drawTriangle(w*0.81, h*0.080,      0, 8, 8, Config.color.volume.down)
+	Util:drawTriangle(w*0.97, h*0.03, _.__pi, 8, 8, Config.color.volume.up)
+	Util:drawTriangle(w*0.97, h*0.06,      0, 8, 8, Config.color.volume.down)
 	--
 	lg.setColor(Config.color.white)
 	lg.setFont(Config.ui.font.xs)
-	lg.printf('Volume',     w*0.85, h*0.05, w*0.125, 'left')
-	lg.printf(_GAME.volume, w*0.85, h*0.05, w*0.125, 'right')
+	lg.printf('Vol.',       w*0.85, h*0.03, w*0.08, 'left')
+	lg.printf(_GAME.volume, w*0.85, h*0.03, w*0.08, 'right')
 	--
 
 	-- text

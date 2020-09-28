@@ -16,7 +16,7 @@ function Title:init(data)
 	self.bgImage  = lg.newImage('res/ui/title.png')
 	self.bgWidth  = self.bgImage:getWidth()
 	self.bgHeight = self.bgImage:getHeight()
-	self.bgScale  = 1.25
+	self.bgScale  = 1.5
 end
 
 -- Event: onEnter
@@ -45,26 +45,26 @@ function Title:draw()
 	-- ESC
 	lg.setColor(Config.color.white)
 	lg.setFont(Config.ui.font.xs)
-	lg.printf('[ESC]Quit', w*0.050, h*0.050, w*0.1, 'left')
+	lg.printf('[ESC]Quit', w*0.03, h*0.03, w*0.1, 'left')
 
 	-- volume
-	Util:drawTriangle(w*0.81, h*0.050, _.__pi, 8, 8, Config.color.volume.up)
-	Util:drawTriangle(w*0.81, h*0.080,      0, 8, 8, Config.color.volume.down)
+	Util:drawTriangle(w*0.97, h*0.03, _.__pi, 8, 8, Config.color.volume.up)
+	Util:drawTriangle(w*0.97, h*0.06,      0, 8, 8, Config.color.volume.down)
 	--
 	lg.setColor(Config.color.white)
 	lg.setFont(Config.ui.font.xs)
-	lg.printf('Volume',     w*0.85, h*0.05, w*0.125, 'left')
-	lg.printf(_GAME.volume, w*0.85, h*0.05, w*0.125, 'right')
+	lg.printf('Vol.',       w*0.85, h*0.03, w*0.08, 'left')
+	lg.printf(_GAME.volume, w*0.85, h*0.03, w*0.08, 'right')
 	--
 
 	-- difficulty
-	Util:drawTriangle(w*0.80, h*0.12,  _.__pi/2, 8, 8, Config.color.difficulty.up)
-	Util:drawTriangle(w*0.82, h*0.12, -_.__pi/2, 8, 8, Config.color.difficulty.down)
+	Util:drawTriangle(w*0.97, h*0.10,  _.__pi/2, 8, 8, Config.color.difficulty.up)
+	Util:drawTriangle(w*0.97, h*0.12, -_.__pi/2, 8, 8, Config.color.difficulty.down)
 	--
 	lg.setColor(Config.color.white)
 	lg.setFont(Config.ui.font.xs)
-	lg.printf('Difficulty',     w*0.85, h*0.1, w*0.125, 'left')
-	lg.printf(_GAME.difficulty, w*0.85, h*0.1, w*0.125, 'right')
+	lg.printf('Skill',          w*0.85, h*0.1, w*0.08, 'left')
+	lg.printf(_GAME.difficulty, w*0.85, h*0.1, w*0.08, 'right')
 	--
 
 	-- cover
@@ -75,7 +75,7 @@ function Title:draw()
 	if _GAME.highScore > 0 then
 		lg.setColor(Config.color.white)
 		lg.setFont(Config.ui.font.sm)
-		lg.printf('HighScore: ' .. _GAME.highScore, 0, h*0.05, w, 'center')
+		lg.printf('HighScore: ' .. _GAME.highScore, 0, h*0.08, w, 'center')
 	end
 
 	-- text
@@ -86,8 +86,8 @@ function Title:draw()
 	-- credits
 	lg.setColor(1,1,1,0.35)
 	lg.setFont(Config.ui.font.xs)
-	lg.printf('Developer: Shane Krolikowski', w*0.05, h*0.95, w-w*0.1, 'left')
-	lg.printf('Audio & Fonts: KenneyNL', w*0.05, h*0.95, w-w*0.1, 'right')
+	lg.printf('Developer: Shane Krolikowski', w*0.03, h*0.95, w-w*0.1, 'left')
+	lg.printf('Audio & Fonts: KenneyNL',      w*0.03, h*0.95, w-w*0.1, 'right')
 end
 
 ---- ---- ---- ----
