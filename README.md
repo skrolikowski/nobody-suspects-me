@@ -22,5 +22,5 @@ As tradition states, once every year one special resident of Pink-Town is select
 ### Credits
 - Music, Audio, & Font Assets - [KenneyNL](https://www.kenney.nl/)
 - [H.U.M.P.](https://hump.readthedocs.io/en/latest/index.html) - (timer, gamestates, camera)
-- Simple Tiled Implementation and Tiled Map Editor.
+- [Simple Tiled Implementation](https://github.com/karai17/Simple-Tiled-Implementation) and [Tiled Map Editor](https://www.mapeditor.org/).
 - [Love2D](https://love2d.org/) - a framework for making 2D games.
