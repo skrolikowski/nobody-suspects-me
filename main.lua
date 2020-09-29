@@ -133,9 +133,9 @@ function resetGame()
 	_GAME = Saver:save('nobody-suspects-me', {
 		level      = 1,
 		score      = 0,
-		volume     = _GAME.volume     or 1,
-		difficulty = _GAME.difficulty or 3,
-		highScore  = _GAME.highScore  or 0,
+		volume     = _GAME and _GAME.volume     or 1,
+		difficulty = _GAME and _GAME.difficulty or 3,
+		highScore  = _GAME and _GAME.highScore  or 0,
 	})
 end
 
